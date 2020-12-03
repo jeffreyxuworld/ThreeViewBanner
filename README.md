@@ -5,8 +5,11 @@
 banner 后面的背景图片可随着 banner 页面的滑动，背景图在临界点会变化图片以及有 alpha 值的渐变过程。
 
 ThreeViewBanner:一屏三页 banner 的主要实现逻辑；
+
 BaseBanner：基础 banner 控件代码；
+
 IndicatorView：banner 对应的指示器；
+
 ScaleInTransformer：通过 CompositePageTransformer 为 ViewPager2 设置一个页面缩放的ScaleInTransformer
 
 
