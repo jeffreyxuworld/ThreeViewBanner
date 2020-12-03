@@ -14,7 +14,7 @@ import androidx.viewpager2.widget.ViewPager2
 /**
  * banner控件base代码
  */
-class BaseBanner @JvmOverloads constructor(
+open class BaseBanner @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
