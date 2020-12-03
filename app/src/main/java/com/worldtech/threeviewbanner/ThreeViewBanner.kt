@@ -76,6 +76,7 @@ class ThreeViewBanner @JvmOverloads constructor(
         //ViewPager2的一屏多页可以通过为RecyclerView设置Padding来实现。
         var pageMargin = pageMargin
         if (pageMargin < 0) pageMargin = 0
+        //通过CompositePageTransformer为ViewPager设置了MarginPageTransformer
         addPageTransformer(MarginPageTransformer(pageMargin))
         val recyclerView = viewPager2!!.getChildAt(0) as RecyclerView
         if (viewPager2!!.getOrientation() == ViewPager2.ORIENTATION_VERTICAL) {

@@ -8,6 +8,7 @@ import android.widget.RelativeLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.worldtech.threeviewbanner.IndicatorView
 import com.worldtech.threeviewbanner.R
+import com.worldtech.threeviewbanner.ScaleInTransformer
 import com.worldtech.threeviewbanner.ThreeViewBanner
 import com.worldtech.threeviewbanner.adapter.BannerAdapter
 
@@ -49,6 +50,7 @@ class ThreeViewBannerActivity : BaseActivity() {
                 .setOrientation(ViewPager2.ORIENTATION_HORIZONTAL)
                 .setPagerScrollDuration(800)
                 .setIndicator(it, indicatorView)
+                .addPageTransformer(ScaleInTransformer())  //如果不需要缩放效果，去掉此行代码
         }
 
 

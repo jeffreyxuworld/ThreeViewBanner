@@ -10,7 +10,6 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
-import androidx.annotation.IntDef
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
 
@@ -48,13 +47,7 @@ class IndicatorView @JvmOverloads constructor(
     private var indicatorSpacing = dip2px(10f).toFloat()
 
     /*--------------- 核心控制点大小距离参数end ---------------*/
-//    @IntDef(
-//        IndicatorStyle.INDICATOR_CIRCLE,
-//        IndicatorStyle.INDICATOR_CIRCLE_RECT,
-//        IndicatorStyle.INDICATOR_BEZIER,
-//        IndicatorStyle.INDICATOR_DASH,
-//        IndicatorStyle.INDICATOR_BIG_CIRCLE
-//    )
+
     @Retention(RetentionPolicy.SOURCE)
     annotation class IndicatorStyle {
         companion object {
