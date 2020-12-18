@@ -18,6 +18,6 @@ class BannerAdapter(private val items: List<String>) :
         return items.size
     }
 
-    private class BannerViewHolder internal constructor(itemView: View) :
+    private class BannerViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView)
 }
