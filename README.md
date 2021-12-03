@@ -21,6 +21,5 @@ ScaleInTransformer：通过 CompositePageTransformer 为 ViewPager2 设置一个
 
 **页面运行截图：**
 
-![Demo页面录制](https://upload-images.jianshu.io/upload_images/633041-213f626705e5f8c2.gif?imageMogr2/auto-orient/strip)
-
+![Demo页面录制](https://upload-images.jianshu.io/upload_images/633041-7b7f9b6ad9dd8e5d.gif?imageMogr2/auto-orient/strip)
 
