@@ -15,7 +15,12 @@ IndicatorView：banner 对应的指示器；
 
 ScaleInTransformer：通过 CompositePageTransformer 为 ViewPager2 设置一个页面缩放的 ScaleInTransformer
 
+-----------------------------------------------------------------
+新版本新增：层叠卡片（3个卡片旋转木马效果）
+
 
 **页面运行截图：**
 
-![页面截图](https://upload-images.jianshu.io/upload_images/633041-37f883e07005d376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Demo页面录制](https://upload-images.jianshu.io/upload_images/633041-213f626705e5f8c2.gif?imageMogr2/auto-orient/strip)
+
+
