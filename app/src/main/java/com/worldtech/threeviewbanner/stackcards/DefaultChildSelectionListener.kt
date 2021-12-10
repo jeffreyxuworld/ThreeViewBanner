@@ -1,37 +1,48 @@
-package com.worldtech.threeviewbanner.stackcards;
+package com.worldtech.threeviewbanner.stackcards
 
-import android.view.View;
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class DefaultChildSelectionListener extends CarouselChildSelectionListener {
-
-    @NonNull
-    private final OnCenterItemClickListener mOnCenterItemClickListener;
-
-    protected DefaultChildSelectionListener(@NonNull final OnCenterItemClickListener onCenterItemClickListener, @NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager) {
-        super(recyclerView, carouselLayoutManager);
-
-        mOnCenterItemClickListener = onCenterItemClickListener;
+open class DefaultChildSelectionListener protected constructor(
+    private val mOnCenterItemClickListener: OnCenterItemClickListener,
+    recyclerView: RecyclerView,
+    carouselLayoutManager: CarouselLayoutManager
+) : CarouselChildSelectionListener(recyclerView, carouselLayoutManager) {
+    override fun onCenterItemClicked(
+        recyclerView: RecyclerView,
+        carouselLayoutManager: CarouselLayoutManager,
+        v: View
+    ) {
+        mOnCenterItemClickListener.onCenterItemClicked(recyclerView, carouselLayoutManager, v)
     }
 
-    @Override
-    protected void onCenterItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager, @NonNull final View v) {
-        mOnCenterItemClickListener.onCenterItemClicked(recyclerView, carouselLayoutManager, v);
+    override fun onBackItemClicked(
+        recyclerView: RecyclerView,
+        carouselLayoutManager: CarouselLayoutManager,
+        v: View
+    ) {
+        recyclerView.smoothScrollToPosition(carouselLayoutManager.getPosition(v))
     }
 
-    @Override
-    protected void onBackItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager, @NonNull final View v) {
-        recyclerView.smoothScrollToPosition(carouselLayoutManager.getPosition(v));
+    interface OnCenterItemClickListener {
+        fun onCenterItemClicked(
+            recyclerView: RecyclerView,
+            carouselLayoutManager: CarouselLayoutManager,
+            v: View
+        )
     }
 
-    public static DefaultChildSelectionListener initCenterItemListener(@NonNull final OnCenterItemClickListener onCenterItemClickListener, @NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager) {
-        return new DefaultChildSelectionListener(onCenterItemClickListener, recyclerView, carouselLayoutManager);
-    }
-
-    public interface OnCenterItemClickListener {
-
-        void onCenterItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager, @NonNull final View v);
+    companion object {
+        fun initCenterItemListener(
+            onCenterItemClickListener: OnCenterItemClickListener,
+            recyclerView: RecyclerView,
+            carouselLayoutManager: CarouselLayoutManager
+        ): DefaultChildSelectionListener {
+            return DefaultChildSelectionListener(
+                onCenterItemClickListener,
+                recyclerView,
+                carouselLayoutManager
+            )
+        }
     }
 }

@@ -496,11 +496,11 @@ public class CarouselLayoutManager extends RecyclerView.LayoutManager implements
         if (null == transformation) {
             view.layout(start, top, end, bottom);
         } else {
-            view.layout(Math.round(start + transformation.mTranslationX), Math.round(top + transformation.mTranslationY),
-                    Math.round(end + transformation.mTranslationX), Math.round(bottom + transformation.mTranslationY));
+            view.layout(Math.round(start + transformation.getMTranslationX()), Math.round(top + transformation.getMTranslationY()),
+                    Math.round(end + transformation.getMTranslationX()), Math.round(bottom + transformation.getMTranslationY()));
 
-            view.setScaleX(transformation.mScaleX);
-            view.setScaleY(transformation.mScaleY);
+            view.setScaleX(transformation.getMScaleX());
+            view.setScaleY(transformation.getMScaleY());
         }
     }
 

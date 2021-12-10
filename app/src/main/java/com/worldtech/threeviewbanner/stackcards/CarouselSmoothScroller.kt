@@ -1,46 +1,40 @@
-package com.worldtech.threeviewbanner.stackcards;
+package com.worldtech.threeviewbanner.stackcards
 
-import android.graphics.PointF;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView
+import com.worldtech.threeviewbanner.stackcards.CarouselLayoutManager
+import android.graphics.PointF
+import android.view.View
+import java.lang.IllegalArgumentException
 
 /**
- * Custom implementation of {@link RecyclerView.SmoothScroller} that can work only with {@link CarouselLayoutManager}.
+ * Custom implementation of [RecyclerView.SmoothScroller] that can work only with [CarouselLayoutManager].
  *
  * @see CarouselLayoutManager
  */
-public class CarouselSmoothScroller {
-
-    public CarouselSmoothScroller(@NonNull final RecyclerView.State state, final int position) {
-        if (0 > position) {
-            throw new IllegalArgumentException("position can't be less then 0. position is : " + position);
-        }
-        if (position >= state.getItemCount()) {
-            throw new IllegalArgumentException("position can't be great then adapter items count. position is : " + position);
-        }
+class CarouselSmoothScroller(state: RecyclerView.State, position: Int) {
+    fun computeScrollVectorForPosition(
+        targetPosition: Int,
+        carouselLayoutManager: CarouselLayoutManager
+    ): PointF? {
+        return carouselLayoutManager.computeScrollVectorForPosition(targetPosition)
     }
 
-    @SuppressWarnings("unused")
-    public PointF computeScrollVectorForPosition(final int targetPosition, @NonNull final CarouselLayoutManager carouselLayoutManager) {
-        return carouselLayoutManager.computeScrollVectorForPosition(targetPosition);
+    fun calculateDyToMakeVisible(view: View?, carouselLayoutManager: CarouselLayoutManager): Int {
+        return if (!carouselLayoutManager.canScrollVertically()) {
+            0
+        } else carouselLayoutManager.getOffsetForCurrentView(
+            view!!
+        )
     }
 
-    @SuppressWarnings("unused")
-    public int calculateDyToMakeVisible(final View view, @NonNull final CarouselLayoutManager carouselLayoutManager) {
-        if (!carouselLayoutManager.canScrollVertically()) {
-            return 0;
-        }
-
-        return carouselLayoutManager.getOffsetForCurrentView(view);
+    fun calculateDxToMakeVisible(view: View?, carouselLayoutManager: CarouselLayoutManager): Int {
+        return if (!carouselLayoutManager.canScrollHorizontally()) {
+            0
+        } else carouselLayoutManager.getOffsetForCurrentView(view!!)
     }
 
-    @SuppressWarnings("unused")
-    public int calculateDxToMakeVisible(final View view, @NonNull final CarouselLayoutManager carouselLayoutManager) {
-        if (!carouselLayoutManager.canScrollHorizontally()) {
-            return 0;
-        }
-        return carouselLayoutManager.getOffsetForCurrentView(view);
+    init {
+        require(0 <= position) { "position can't be less then 0. position is : $position" }
+        require(position < state.itemCount) { "position can't be great then adapter items count. position is : $position" }
     }
 }

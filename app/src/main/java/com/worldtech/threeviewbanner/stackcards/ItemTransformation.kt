@@ -1,16 +1,8 @@
-package com.worldtech.threeviewbanner.stackcards;
+package com.worldtech.threeviewbanner.stackcards
 
-public class ItemTransformation {
-
-    final float mScaleX;
-    final float mScaleY;
-    final float mTranslationX;
-    final float mTranslationY;
-
-    public ItemTransformation(final float scaleX, final float scaleY, final float translationX, final float translationY) {
-        mScaleX = scaleX;
-        mScaleY = scaleY;
-        mTranslationX = translationX;
-        mTranslationY = translationY;
-    }
-}
+class ItemTransformation(
+    val mScaleX: Float,
+    val mScaleY: Float,
+    val mTranslationX: Float,
+    val mTranslationY: Float
+)

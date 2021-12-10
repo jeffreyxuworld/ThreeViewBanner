@@ -2,6 +2,7 @@ package com.worldtech.threeviewbanner.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -133,11 +134,19 @@ class ThreeViewBannerActivity : BaseActivity() {
         // enable center post scrolling
         recyclerView.addOnScrollListener(CenterScrollListener())
         // enable center post touching on item and item click listener
-        DefaultChildSelectionListener.initCenterItemListener({ recyclerView, carouselLayoutManager, v ->
-            val position = recyclerView.getChildLayoutPosition(v)
-            val msg = String.format(Locale.US, "Item %1\$d was clicked", position)
-            Toast.makeText(this@ThreeViewBannerActivity, msg, Toast.LENGTH_SHORT).show()
+        DefaultChildSelectionListener.initCenterItemListener(object :
+            DefaultChildSelectionListener.OnCenterItemClickListener {
+            override fun onCenterItemClicked(
+                recyclerView: RecyclerView,
+                carouselLayoutManager: CarouselLayoutManager,
+                v: View
+            ) {
+                val position = recyclerView.getChildLayoutPosition(v)
+                val msg = String.format(Locale.US, "Item %1\$d was clicked", position)
+                Toast.makeText(this@ThreeViewBannerActivity, msg, Toast.LENGTH_SHORT).show()
+            }
         }, recyclerView, layoutManager)
+
         layoutManager.addOnItemSelectionListener { adapterPosition ->
             if (CarouselLayoutManager.INVALID_POSITION !== adapterPosition) {
                 val value = adapter.mPosition[adapterPosition]
