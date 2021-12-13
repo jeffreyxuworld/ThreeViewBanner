@@ -11,7 +11,7 @@ abstract class CarouselChildSelectionListener protected constructor(
     private val mOnClickListener = View.OnClickListener { v ->
         val holder = mRecyclerView.getChildViewHolder(v)
         val position = holder.adapterPosition
-        if (position == mCarouselLayoutManager.getCenterItemPosition()) {
+        if (position == mCarouselLayoutManager.centerItemPosition) {
             onCenterItemClicked(mRecyclerView, mCarouselLayoutManager, v)
         } else {
             onBackItemClicked(mRecyclerView, mCarouselLayoutManager, v)

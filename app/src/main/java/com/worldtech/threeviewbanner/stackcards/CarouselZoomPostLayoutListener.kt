@@ -4,6 +4,7 @@ import kotlin.jvm.JvmOverloads
 import com.worldtech.threeviewbanner.stackcards.CarouselLayoutManager.PostLayoutListener
 import android.view.View
 import android.util.Log
+import kotlin.math.abs
 import kotlin.math.sign
 
 /**
@@ -18,7 +19,7 @@ class CarouselZoomPostLayoutListener @JvmOverloads constructor(private val mScal
         itemPositionToCenterDiff: Float,
         orientation: Int
     ): ItemTransformation {
-        val scale = 1.0f - mScaleMultiplier * Math.abs(itemPositionToCenterDiff)
+        val scale = 1.0f - mScaleMultiplier * abs(itemPositionToCenterDiff)
         Log.d("Lei", "itemPositionToCenterDiff = $itemPositionToCenterDiff,scale = $scale")
 
         // because scaling will make view smaller in its center, then we should move this item to the top or bottom to make it visible

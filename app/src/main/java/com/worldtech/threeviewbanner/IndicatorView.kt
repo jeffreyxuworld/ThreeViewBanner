@@ -12,6 +12,8 @@ import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
+import kotlin.math.max
+import kotlin.math.min
 
 class IndicatorView @JvmOverloads constructor(
     context: Context?,
@@ -179,16 +181,16 @@ class IndicatorView @JvmOverloads constructor(
         val left = indicatorStartX - ratioRadius
         val right = indicatorStartX + ratioRadius
         val offset = interpolatedOffset()
-        var distance = indicatorSpacing + Math.max(ratioRadius, ratioRadius) * 2
+        var distance = indicatorSpacing + max(ratioRadius, ratioRadius) * 2
         val leftX: Float
         val rightX: Float
         if ((selectedPage + 1) % pagerCount == 0) {
             distance *= -selectedPage.toFloat()
-            leftX = left + Math.max(distance * offset * 2, distance)
-            rightX = right + Math.min(distance * (offset - 0.5f) * 2.0f, 0f)
+            leftX = left + max(distance * offset * 2, distance)
+            rightX = right + min(distance * (offset - 0.5f) * 2.0f, 0f)
         } else {
-            leftX = left + Math.max(distance * (offset - 0.5f) * 2.0f, 0f)
-            rightX = right + Math.min(distance * offset * 2, distance)
+            leftX = left + max(distance * (offset - 0.5f) * 2.0f, 0f)
+            rightX = right + min(distance * offset * 2, distance)
         }
         rectF[leftX, midY - indicatorSelectedRadius, rightX] = midY + indicatorSelectedRadius
         indicatorPaint.color = selectedColor

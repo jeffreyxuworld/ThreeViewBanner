@@ -124,7 +124,7 @@ class ThreeViewBannerActivity : BaseActivity() {
     ) {
         // enable zoom effect. this line can be customized
         layoutManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
-        layoutManager.setMaxVisibleItems(1)
+        layoutManager.maxVisibleItems = 1
         recyclerView.layoutManager = layoutManager
         // we expect only fixed sized item for now
         recyclerView.setHasFixedSize(true)

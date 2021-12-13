@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import kotlin.math.abs
 
 /**
  * 一屏三页 banner 控件
@@ -25,7 +26,7 @@ class ThreeViewBanner @JvmOverloads constructor(
 
     fun setAdapter(adapter: RecyclerView.Adapter<*>?) {
         mAdapter = adapter
-        viewPager2?.setAdapter(adapter)
+        viewPager2?.adapter = adapter
         viewPager2?.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
@@ -79,19 +80,19 @@ class ThreeViewBanner @JvmOverloads constructor(
         //通过CompositePageTransformer为ViewPager设置了MarginPageTransformer
         addPageTransformer(MarginPageTransformer(pageMargin))
         val recyclerView = viewPager2!!.getChildAt(0) as RecyclerView
-        if (viewPager2!!.getOrientation() == ViewPager2.ORIENTATION_VERTICAL) {
+        if (viewPager2!!.orientation == ViewPager2.ORIENTATION_VERTICAL) {
             recyclerView.setPadding(
-                viewPager2!!.getPaddingLeft(),
-                tlWidth + Math.abs(pageMargin),
-                viewPager2!!.getPaddingRight(),
-                brWidth + Math.abs(pageMargin)
+                viewPager2!!.paddingLeft,
+                tlWidth + abs(pageMargin),
+                viewPager2!!.paddingRight,
+                brWidth + abs(pageMargin)
             )
         } else {
             recyclerView.setPadding(
-                tlWidth + Math.abs(pageMargin),
-                viewPager2!!.getPaddingTop(),
-                brWidth + Math.abs(pageMargin),
-                viewPager2!!.getPaddingBottom()
+                tlWidth + abs(pageMargin),
+                viewPager2!!.paddingTop,
+                brWidth + abs(pageMargin),
+                viewPager2!!.paddingBottom
             )
         }
         recyclerView.clipToPadding = false
