@@ -28,7 +28,6 @@ class ThreeViewBannerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_three_view_banner)
         currentBinding = ActivityThreeViewBannerBinding.inflate(layoutInflater)
         setContentView(currentBinding.root)
         initSystemBar(R.color.transparent)
